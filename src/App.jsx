@@ -5,6 +5,7 @@ import { Companies } from "./components/Companies/Companies";
 import Residencias from "./components/Residencias/Residencias";
 import { Value } from "./components/Value/Value";
 import { Contacty } from "./components/Contacty/Contacty";
+import { GetStarted } from "./components/GetStarted/GetStarted";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
       <Residencias></Residencias>
       <Value></Value>
       <Contacty></Contacty>
+      <GetStarted></GetStarted>
     </div>
   );
 }
