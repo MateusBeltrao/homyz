@@ -6,6 +6,7 @@ import Residencias from "./components/Residencias/Residencias";
 import { Value } from "./components/Value/Value";
 import { Contacty } from "./components/Contacty/Contacty";
 import { GetStarted } from "./components/GetStarted/GetStarted";
+import { Footer } from "./components/Footer/Footer";
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
       <Value></Value>
       <Contacty></Contacty>
       <GetStarted></GetStarted>
+      <Footer></Footer>
     </div>
   );
 }
