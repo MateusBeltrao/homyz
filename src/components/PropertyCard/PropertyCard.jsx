@@ -1,13 +1,17 @@
 import React from 'react'
 import './PropertyCard.css'
 import {AiFillHeart} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 import {truncate} from 'lodash'
 
 const PropertyCard = ({card}) => {
+
+    const navigate = useNavigate();
     return (
-        <div className='flexColStart r-card'>
+        <div className='flexColStart r-card'
+        onClick={()=>navigate(`../properties/${card.id}`)}>
             <img src={card.image} alt="home" />
-                <AiFillHeart size={24} color='white'></AiFillHeart>
+            <AiFillHeart size={24} color='white'></AiFillHeart>
             <span className='secondaryText r-price'>
                 <span style={{ color: 'orange' }}>$</span>
                 <span>{card.price}</span>

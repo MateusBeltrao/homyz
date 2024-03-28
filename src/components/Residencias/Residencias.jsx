@@ -2,7 +2,6 @@ import React from 'react'
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
 import "swiper/css"
 import "./Residencias.css"
-import data from "../../utils/slider.json"
 import { sliderSettings } from '../../utils/common'
 import PropertyCard from '../PropertyCard/PropertyCard'
 import usePropperties from '../../hooks/usePropperties'
