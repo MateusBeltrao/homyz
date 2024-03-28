@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { getProperty } from '../../../utils/api'
 import { PuffLoader } from "react-spinners"
 import { AiFillHeart } from 'react-icons/ai'
+import Map from '../../../components/Map/Map'
 import './Property.css'
 
 import { FaShower } from 'react-icons/fa'
