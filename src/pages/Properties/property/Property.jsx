@@ -26,6 +26,7 @@ const Property = () => {
     )
   }
 
+  
   if (isError) {
     return (
       <div className="wrapper">

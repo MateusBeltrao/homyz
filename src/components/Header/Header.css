@@ -23,6 +23,9 @@ h-menu>*:hover{
     display: none;
 }
 
+.avatar-rounded {
+    border-radius: 50%;
+}
 @media (max-width: 768px){
     .menu-icon{
         display: block;
