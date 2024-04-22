@@ -1,20 +1,53 @@
-import React from 'react'
-import { useQuery } from 'react-query'
+import React, { useContext, useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { getProperty } from '../../../utils/api'
 import { PuffLoader } from "react-spinners"
 import { AiFillHeart } from 'react-icons/ai'
-import Map from '../../../components/Map/Map'
+
 import './Property.css'
+
 
 import { FaShower } from 'react-icons/fa'
 import { AiTwotoneCar } from 'react-icons/ai'
 import { MdLocationPin, MdMeetingRoom } from 'react-icons/md'
+import Map from '../../../components/Map/Map'
+import useAuthCheck from '../../../hooks/useAuthCheck'
+import { useAuth0 } from '@auth0/auth0-react'
+import BookingModal from '../../../components/BookingModal/BookingModal'
+import UserDetailContext from '../../../context/UserDetailContext'
+import { Button } from '@mantine/core'
+import { toast } from 'react-toastify'
+import { removeBooking } from '../../../utils/api'
 
 const Property = () => {
   const { pathname } = useLocation()
   const id = pathname.split("/").slice(-1)[0]
   const { data, isLoading, isError } = useQuery(["resd", id], () => getProperty(id))
+
+  const [modalOpened, setModalOpened] = useState(false)
+
+  const { validateLogin } = useAuthCheck()
+  const { user } = useAuth0()
+
+
+  const {
+    userDetails: { token, bookings },
+    setUserDetails,
+  } = useContext(UserDetailContext)
+
+
+  const {mutate: cancelBooking, isLoading: cancelling} = useMutation({
+    mutationFn: ()=> removeBooking(id, user?.email, token),
+    onSuccess: ()=> {
+      setUserDetails((prev) => ({
+        ...prev,
+        bookings: prev.bookings.filter((booking) => booking?.id !== id)
+      }))
+
+      toast.success("Bookung cancelled", {position: 'bottom-right'})
+    }
+  })
 
   if (isLoading) {
     return (
@@ -26,7 +59,6 @@ const Property = () => {
     )
   }
 
-  
   if (isError) {
     return (
       <div className="wrapper">
@@ -67,29 +99,59 @@ const Property = () => {
               </div>
             </div>
 
-            <span className='secodaryText' style={{textAlign: "justify"}}>
+            <span className='secodaryText' style={{ textAlign: "justify" }}>
               {data?.description}
             </span>
 
-            <div className="flexStart" style={{gap: "1rem"}}>
+            <div className="flexStart" style={{ gap: "1rem" }}>
               <MdLocationPin > </MdLocationPin>
-                <span className='secondaryText'>
-                  {
-                    data?.address
-                  }
-                  {
-                    data?.city
-                  }
-                  {
-                    data?.country
-                  }
-                </span>
-             
-            </div>
+              <span className='secondaryText'>
+                {
+                  data?.address
+                }
+                {
+                  data?.city
+                }
+                {
+                  data?.country
+                }
+              </span>
 
-            <button className="button">
-              Book Your visit
-            </button>
+            </div>
+            {bookings?.map((booking) => booking.id).includes(id) ? (
+              <>
+                <Button
+                  variant="outline"
+                  w={"100%"}
+                  color="red"
+                  onClick={() => cancelBooking()}
+                  disabled={cancelling}
+                >
+                 <span>Cancel booking</span>
+                </Button>
+                 <span>
+                    Your visit already booked for date {bookings?.filter((booking) => booking?.id === id)[0].date}
+                  </span>
+              </>
+
+            ) : (
+              <button
+                className="button"
+                onClick={() => {
+                  validateLogin() && setModalOpened(true)
+                }}>
+                Book Your visit
+              </button>
+            )
+            }
+
+
+            <BookingModal
+              opened={modalOpened}
+              setOpened={setModalOpened}
+              propertyId={id}
+              email={user?.email}
+            />
           </div>
 
 
