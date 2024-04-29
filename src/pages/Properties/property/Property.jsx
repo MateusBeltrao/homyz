@@ -19,6 +19,7 @@ import UserDetailContext from '../../../context/UserDetailContext'
 import { Button } from '@mantine/core'
 import { toast } from 'react-toastify'
 import { removeBooking } from '../../../utils/api'
+import Heart from '../../../components/Heart/Heart'
 
 const Property = () => {
   const { pathname } = useLocation()
@@ -72,7 +73,7 @@ const Property = () => {
     <div className='wrapper'>
       <div className="flexColStart paddings innerWidth property-container">
         <div className="like">
-          <AiFillHeart size={24} color='white'></AiFillHeart>
+          <Heart id={id}></Heart>
         </div>
 
         <img src={data?.image} alt="home image" />
