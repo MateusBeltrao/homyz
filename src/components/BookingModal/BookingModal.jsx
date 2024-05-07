@@ -49,7 +49,7 @@ function BookingModal({opened, setOpened, email, propertyId}) {
     title="Select your date of visit"
     centered
   >
-    <div className="flexColCenter">
+    <div className="flexColCenter" style={{gap : "1rem"}}>
       <DatePicker
         value={value}
         onChange={setValue}

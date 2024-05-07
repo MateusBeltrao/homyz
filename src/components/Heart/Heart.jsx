@@ -12,21 +12,18 @@ function Heart({id}) {
     const {validateLogin} = useAuthCheck()
     const { user } = useAuth0()
 
-    useEffect(() => {
-        if (user) {
-            console.log(user.email);
-        }
-    }, [user]);
-
     const {
-        userDetails: {favourites, token},
+        userDetails: { favourites, token },
         setUserDetails,
-    } = useContext(UserDetailContext)
+      } = useContext(UserDetailContext);
 
     useEffect(() => {
-       
-        setHeartColor(() => checkFavourites(id, favourites))
-    }, [favourites])
+        if (Array.isArray(favourites) && favourites.length > 0) {
+            setHeartColor(() => checkFavourites(id, favourites));
+        }
+    }, [favourites, id]);
+    
+    
 
     const {mutate} = useMutation({
         mutationFn: () => toFav(id, user?.email, token),
@@ -41,11 +38,12 @@ function Heart({id}) {
     })
 
     const handleLike = () => {
-        if(validateLogin()){
-            mutate()
-            setHeartColor((prev) => prev === "#fa3ef5" ? "white" : "#fa3ef5")
+        if (validateLogin() && Array.isArray(favourites)) {
+            mutate();
+            setHeartColor((prev) => prev === "#fa3ef5" ? "white" : "#fa3ef5");
         }
-    }
+    };
+    
   return (
     <AiFillHeart size={24} color={heartColor} onClick={(e) => {
         e.stopPropagation()

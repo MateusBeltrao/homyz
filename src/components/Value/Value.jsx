@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel, AccordionItemState } from 'react-accessible-accordion'
 import "react-accessible-accordion/dist/fancy-example.css"
@@ -25,25 +25,20 @@ export const Value = () => {
                     </span>
 
                     <Accordion
-                    className='accordion'
-                    allowMultipleExpanded={false}
-                    preExpanded={[0]}
+                        className='accordion'
+                        allowMultipleExpanded={false}
+                        preExpanded={[0]}
                     >
                         {
                             data.map((item, i) => {
-                                const [className, setClassName] = useState(null)
-                                return(
+                                return (
                                     <AccordionItem
-                                    className={`accordionItem ${className}`} key={i} uuid={i}>
+                                        className={`accordionItem ${item.expanded ? "expanded" : "collapsed"}`}
+                                        key={i}
+                                        uuid={i}
+                                    >
                                         <AccordionItemHeading>
                                             <AccordionItemButton className='flexCenter accordionButton'>
-                                                <AccordionItemState>
-                                                    {({ expanded}) => 
-                                                        expanded
-                                                            ? setClassName("expanded")
-                                                            : setClassName("collapsed")
-                                                    }
-                                                </AccordionItemState>
                                                 <div className="flexCenter icon">{item.icon}</div>
                                                 <span className="primaryText">
                                                     {item.heading}
