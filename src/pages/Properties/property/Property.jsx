@@ -109,10 +109,10 @@ const Property = () => {
               <span className='secondaryText'>
                 {
                   data?.address
-                }
+                }{" "}
                 {
                   data?.city
-                }
+                } {" "}
                 {
                   data?.country
                 }
