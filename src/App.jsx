@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import Property from './pages/Properties/property/Property';
 import { MantineProvider } from '@mantine/core';
 import UserDetailContext from './context/UserDetailContext';
+import Bookings from './pages/Bookings/Bookings';
+import Favourites from './pages/Favourites/Favourites';
 
 function App() {
   const queryClient = new QueryClient()
@@ -32,9 +34,13 @@ function App() {
                 <Route element={<Layout></Layout>}>
                   <Route path='/' element={<Websites />}></Route>
                   <Route path='/properties'>
+                    
                     <Route index element={<Properties></Properties>}></Route>
                     <Route path=':propertyId' element={<Property></Property>}></Route>
+
                   </Route>
+                  <Route path='/bookings' element={<Bookings />} />
+                  <Route path='/favourites' element={<Favourites />} />
                 </Route>
               </Routes>
             </Suspense>

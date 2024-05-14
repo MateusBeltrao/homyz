@@ -41,8 +41,8 @@
     border-radius: 5px;
     border: 3px solid rgba(120, 120, 120, 0.374);
     padding: 0.5rem 1rem;
-    justify-content: space-between;
     width: 100%;
+    justify-content: space-between;
 }
 
 .search-bar> input{
@@ -78,6 +78,11 @@
 }
 
 @media (max-width: 640px){
+    .search-bar{
+        align-items: center;
+        justify-content: center;
+        
+    }
     .hero-container{
         margin-top: 2rem;
     }

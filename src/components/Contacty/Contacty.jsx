@@ -16,7 +16,7 @@ export const Contacty = () => {
 
                     <div className="flexColStart contactModes">
                         
-                        {/* first row */}
+                       
                         <div className="flexStart row">
                             <div className="flexColCenter mode">
                                 <div className="flexStart">
@@ -45,7 +45,7 @@ export const Contacty = () => {
                             </div>
                         </div>
 
-                        {/* second row */}
+                       
                         <div className="flexStart row">
                             <div className="flexColCenter mode">
                                 <div className="flexStart">
