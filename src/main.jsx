@@ -10,15 +10,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain="dev-q8cx154qb7b3j6vd.us.auth0.com"
       clientId="hdrNTtHrlDmKK1OGO7WpBcp6QhB1JfDd"
       authorizationParams={{
-        redirect_uri: "https://homyz-front-git-main-mateusbeltraos-projects.vercel.app"
+        redirect_uri: window.location.origin
       }}
-      audience= "http://localhost:8000"
+      audience="https://homyz-front-git-main-mateusbeltraos-projects.vercel.app"
       scope="openid profile email"
     >
-         <App />
+      <App />
     </Auth0Provider>
   </React.StrictMode>
 );
-
-
-homyz
