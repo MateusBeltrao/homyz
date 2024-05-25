@@ -13,6 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     redirect_uri: "https://homyz-front-git-main-mateusbeltraos-projects.vercel.app"
    }}
    audience="http://localhost:8000"
+   
    scope="openid profile email"
   >
     <App />
