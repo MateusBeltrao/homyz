@@ -158,21 +158,30 @@ export const getAllBookings = async (email, token) => {
 
 
 export const createResidency = async (data, token) => {
+  console.log('Data being sent:', data);
 
-  console.log(data)
   try {
     const res = await api.post(
-      `/residency/create`,
-      {
-        data
-      },
+      '/residency/create',
+      data, // Passe os dados diretamente
       {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
       }
-    )
+    );
+    console.log('Response:', res.data);
+    return res.data;
   } catch (error) {
-    throw error
+    if (error.response) {
+      console.error('Error response data:', error.response.data);
+      console.error('Error response status:', error.response.status);
+      console.error('Error response headers:', error.response.headers);
+    } else if (error.request) {
+      console.error('Error request:', error.request);
+    } else {
+      console.error('General error message:', error.message);
+    }
+    throw error;
   }
-}
+};
