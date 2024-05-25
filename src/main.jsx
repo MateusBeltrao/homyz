@@ -11,6 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
    clientId="RXlGXkr49Ev5MHpvAC6vKkZ4bVn11iwl"
    authorizationParams={{
     redirect_uri: "https://homyz-git-main-mateusbeltraos-projects.vercel.app"
+
    }}
    audience="http://localhost:8000"
    scope="openid profile email"
