@@ -7,10 +7,10 @@ import { Auth0Provider } from "@auth0/auth0-react";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Auth0Provider
-     domain="dev-03ifqltxbr6nn0hn.us.auth0.com"
-     clientId="RXlGXkr49Ev5MHpvAC6vKkZ4bVn11iwl"
+     domain="dev-q8cx154qb7b3j6vd.us.auth0.com"
+     clientId="hdrNTtHrlDmKK1OGO7WpBcp6QhB1JfDd"
      authorizationParams={{
-      
+      redirect_uri: "https://homyz-git-main-mateusbeltraos-projects.vercel.app"
      }}
      audience="http://localhost:8000"
      scope="openid profile email"
