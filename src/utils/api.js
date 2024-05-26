@@ -155,25 +155,22 @@ export const getAllBookings = async (email, token) => {
   }
 }
 
-// controllers/resdCbtrl.js
-export const createResidency = async (req, res) => {
-  try {
-    const data = req.body;
-    console.log('Received data:', data);
-
-    // Suponha que você tenha uma função saveResidency para salvar a residência no banco de dados
-    const newResidency = await saveResidency(data);
-
-    res.status(201).json(newResidency);
-  } catch (error) {
-    console.error('Error creating residency:', error);
-    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+export const createResidency = async (data, token) => {
+  console.log(data)
+  try{
+    const res = await api.post(
+      `/residency/create`,
+      {
+        data
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+  }catch(error)
+  {
+    throw error
   }
-};
-
-// Função fictícia para salvar a residência (implemente conforme necessário)
-const saveResidency = async (data) => {
-  // Sua lógica para salvar a residência no banco de dados
-  // Por exemplo, usando um ORM como Sequelize ou Mongoose
-  return { success: true, data }; // Retorne um objeto de exemplo
-};
+}
