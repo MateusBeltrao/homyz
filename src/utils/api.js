@@ -4,7 +4,7 @@ import {toast} from 'react-toastify'
 
 
 export const api = axios.create({
-  baseURL: "localhost3000/api",
+  
 });
 
 
