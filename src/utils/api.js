@@ -4,7 +4,7 @@ import {toast} from 'react-toastify'
 
 
 export const api = axios.create({
-  baseURL: "https://homyz-git-main-mateusbeltraos-projects.vercel.app/api",
+  baseURL: "https://localhost:8000/api",
 });
 
 
